@@ -358,7 +358,7 @@ Fazendo o windows apontar para os dominios
 - tecla ``` Enter ``` 
 - ``` 192.168.0.2 aplicativo2.com ```
 
-Fazendo o servidor servir páginas diferentes para cada domonio
+Fazendo o servidor servir páginas diferentes para cada dominio
 - ``` cd /var/lib/tomcat9 ```
 - ``` cp -R webapps aplicativo1 ``` -> ```cp -R``` copia todo conteúdo de forma recursiva
 - ``` cp -R webapps aplicativo2 ```
