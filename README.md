@@ -305,4 +305,26 @@ Atualizar o repositório e instalar o MySQL
 - systemctl status mysql -> verifica o status
 - tecla "q" para sair
 
+Reforçando a segurança no banco de dados
+- mysql_secure_installation
 
+Criando usuário para acessar o mysql remotamente
+- mysql -u root -p
+- CTRL + L -> limpa o console
+- select user, host from mysql.user; -> lista os usuários do mysql
+- create user 'user'@'%' identified by 'password';
+- user -> nome do novo usuário sem espaço e tudo minúsculo
+-  % -> significa que o usuário vai poder acessar o banco de qualquer lugar
+- password -> depende do nível de segurança escolhido nos passos anteriores
+- flush privileges; -> Atualiza as alterações sem precisar reiniciar o banco de dados
+
+ Dando previlégios ao usuário para administrar qualquer banco de dados
+ - grant all privileges on *.* to 'user'@'%';
+ - O primeiro * significa todos os bancos de dados
+ - o segundo * significa todas as tabelas
+ - CTRL + D -> sai do console do mysql
+ 
+ Instalando uma ferramenta no windows para administrar remotamente o bando de dados
+ - MySQL WorkBench
+ - Crie uma nova conexão no workbench
+ - Coloque as informações do servidor
