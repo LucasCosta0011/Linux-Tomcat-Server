@@ -328,3 +328,6 @@ Criando usuário para acessar o mysql remotamente
  - MySQL WorkBench
  - Crie uma nova conexão no workbench
  - Coloque as informações do servidor
+ 
+ Hosts Virtuais
+ - O servidor web dinâmico permite hospedar vários projetos e associar cada projeto a um dominio. Ex:``` aplicativo1.com ``` ``` aplicativo2.com ```
