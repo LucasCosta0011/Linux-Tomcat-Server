@@ -336,4 +336,25 @@ Criando usuário para acessar o mysql remotamente
 - sempre fazer uma cópia antes de mexer nos arquivos chaves do linux
 - ``` cp server.xml server.xml.bkp ```
 - Dentro de /etc/tomcat9 editar o arquivo server.xml 
+- ``` vim server.xml ```
+-  ``` Esc + :set number ```
+-  Na linha 70 ``` port="80" ``` -> não precisa colocar a porta :8080 para acessar o servidor
+- Salvar e sair
+- ``` systemctl restart tomcat9 ``` -> reiniciar o servidor tomcat
+Fazendo o windows apontar para os dominios
+- Abrir o notepad como admin
+- ``` arquivo ```
+  -- ``` abrir ``` 
+  --- ``` Disco Local C: ``` 
+  ---- ```  Windows ```
+  ----- ``` System32 ```
+  ------ ``` drivers ```
+  ------- ``` etc ```
+- Mudar para poder ver ``` todos os arquivos ```
+- Editar o arquivo ``` hosts ```
+- Ir até o final do documento
+-  Coloque o IP onde está o servidor e o dominio. 
+-Ex: ``` 192.168.0.2 aplicativo1.com ```
+- tecla ``` Enter ``` 
+- ``` 192.168.0.2 aplicativo2.com ```
 
