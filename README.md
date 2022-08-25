@@ -372,11 +372,9 @@ Fazendo o servidor servir páginas diferentes para cada domonio
 - Tecla ``` o ``` para pular uma linha e abrir o modo inserção
 - A nova tag ficará assim:
 - Aplicativo 1
-- ``` <Host name="aplicativo1.com" appBase="aplicativo1"
-            unpackWARs="true" autodeploy="true"></Host> ```
+- ``` <Host name="aplicativo1.com" appBase="aplicativo1" unpackWARs="true" autodeploy="true"></Host> ```
 - Aplicativo 2
-- ``` <Host name="aplicativo2.com" appBase="aplicativo2"
-            unpackWARs="true" autodeploy="true"></Host> ```
+- ``` <Host name="aplicativo2.com" appBase="aplicativo2" unpackWARs="true" autodeploy="true"></Host> ```
 - Salvar e sair
 - ``` systemctl restart tomcat9 ``` -> reiniciar o servidor tomcat
 - ``` systemctl status tomcat9 ``` -> verifica se está tudo certo com o servidor
