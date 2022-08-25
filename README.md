@@ -227,7 +227,7 @@ apt install vim
 - Testando a comunicação entre a máquina real e a virtual
 Na máquina real ping o IP da máquina virtual
 
-Para instalar o tomcar é necessario ter o Java instalado
+Para instalar o tomcat é necessario ter o Java instalado
 - apt install default-jdk -> instala o jdk
 - java -version -> versão do java
 - javac -version -> versão da máquina virtual java
@@ -291,7 +291,7 @@ Para resolver esse problema e bem simples.
 Edite o arquivo com o seu editor de texto favorito, no meu caso vou usar o vim
 
 - vim /etc/profile
-- Basta colocar /sbin após “games“, ficando como o exemplo abaixo
+- Basta colocar /sbin após “games“, ficando como o exemplo a baixo
 - PATH="/usr/local/bin:/usr/bin:/bin:/usr/games/sbin"
 - Salve e Atualize o arquivo
 - source /etc/profile -> atualiza o arquivo
