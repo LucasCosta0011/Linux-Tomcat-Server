@@ -358,3 +358,27 @@ Fazendo o windows apontar para os dominios
 - tecla ``` Enter ``` 
 - ``` 192.168.0.2 aplicativo2.com ```
 
+Fazendo o servidor servir páginas diferentes para cada domonio
+- ``` cd /var/lib/tomcat9 ```
+- ``` cp -R webapps aplicativo1 ``` -> ```cp -R``` copia todo conteúdo de forma recursiva
+- ``` cp -R webapps aplicativo2 ```
+- Romover todos os arquivos dentro de ``` ROOT/ ``` e deixar apenas o ``` META-INF ``` nos dois novos diretórios
+-  Criar um ``` index.html ``` simples para os dois novos diretórios
+- Redirecionando os arquivos
+- ``` cd /etc/tomcat9 ```
+- ``` vim server.xml ```
+- Na linha 151 tem a primeira tag ``` Host ```
+- Na linha de fechamento da tag ``` Host ```
+- Tecla ``` o ``` para pular uma linha e abrir o modo inserção
+- A nova tag ficará assim:
+- Aplicativo 1
+- ``` <Host name="aplicativo1.com" appBase="aplicativo1"
+            unpackWARs="true" autodeploy="true"></Host> ```
+- Aplicativo 2
+- ``` <Host name="aplicativo2.com" appBase="aplicativo2"
+            unpackWARs="true" autodeploy="true"></Host> ```
+- Salvar e sair
+- ``` systemctl restart tomcat9 ``` -> reiniciar o servidor tomcat
+- ``` systemctl status tomcat9 ``` -> verifica se está tudo certo com o servidor
+- Tecla ``` q ``` -> Para sair
+- Pronto agora as páginas estão sendo redirecionadas pelo dominio
