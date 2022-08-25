@@ -154,6 +154,7 @@ Certificação Linux LPI
 Instalação:
 - Configurações -> armazenamento -> escolher a iso
 - Rede -> Modo bridge 
+- ``` IMPORTANTE Deixar pelomenos 16GB para o sistema ```
 
 Configurando Debian
 
@@ -171,110 +172,110 @@ https://www.youtube.com/watch?v=65Kr70FSk6Y
 isso traz mais segurança e desempenho ao servidor
 
 Comandos:
-- hostnamectl -> exibe a versão do debian e a versão do Kernel do Linux
-- shutdown -h now -> desliga o servidor
+- ``` hostnamectl ``` -> exibe a versão do debian e a versão do Kernel do Linux
+- ``` shutdown -h now ``` -> desliga o servidor
 
 Configurando um IP Fixo no Servidor Apache tomcat
-- ip a -> exibe as configurações de ip
+- ``` ip a ``` -> exibe as configurações de ip
 - como estou com a placa em modo bridge ele pegou o ip direto do roteador
 - No cmd do hospedeiro executamos o comando 
 ipconfig /all
 - Pegamos o gateway e apontamos o ip no navegador
 Configurações avançadas -> definição do servidor DHCP 
 - O passo a cima é importante para não gerar conflito de IP
-- cd /etc/network
-- pwd -> ver o diretório atual
-- ls -> lista arquivos e diretórios
+- ``` cd /etc/network ```
+- ``` pwd ``` -> ver o diretório atual
+- ``` ls ``` -> lista arquivos e diretórios
 - Precisamos configuras o arquivo INTERFACES para obter um IP Fixo
 - Fazendo uma cópia de segurança do arquivo antes de modifica-lo.
-- cp interfaces interfaces.bkp
-- vi interfaces -> abre o arquivo no editor vi
-- Esc :set number -> numerar as linhas
+- ``` cp interfaces interfaces.bkp ```
+- ``` vi interfaces ``` -> abre o arquivo no editor vi
+- ``` Esc :set number ``` -> numerar as linhas
 - Na linha 12 apagamos o DHCP
 - Precionamos a tecla "a" para ativar o modo de inserção
 - A linha 12 ficará assim:
- iface enp0s3 inet static
+  ``` iface enp0s3 inet static ```
 - Na linha 13 definindo o endereço:
- address <endereço IP disponível na rede> SEM os sinais de < e >
+  ``` address <endereço IP disponível na rede> ``` SEM os sinais de < e >
 - Na linha 14 definindo a máscara:
- netmask <máscara da rede> SEM os sinais de < e >
+  ``` netmask <máscara da rede> ``` SEM os sinais de < e >
 - Procurar por classes de máscaras para fazer o passo a cima.
 - Na linha 15 definindo a rede: 
-network 192.168.0.0
+ ``` network 192.168.0.0 ```
 - A rede sempre inicia com o final 0
 - Na linha 16 definindo o broadcast:
- broadcast 192.168.0.255
+ ``` broadcast 192.168.0.255 ```
 - broadcast sempre finaliza com IP 255
 - Na linha 17 definindo gateway: 
-gateway 192.168.0.1
+```  gateway 192.168.0.1 ```
 - Na linha 18 definindo dns:
-dns-nameservers 8.8.8.8 8.8.4.4
+``` dns-nameservers 8.8.8.8 8.8.4.4 ```
 
 - Depois que estiver tudo correto fechamos o vi 
-:wq -> write quit
+``` :wq ``` -> write quit
 - Reiniciar o servidor com systemctl reboot
 
 - Verificar se o IP realmente mudou 
-ip a
+ ``` ip a ```
 - Verificar se a internet está chegando e se o hospedeiro está conseguindo se comunicar com a máquina virtual
-ping www.google.com
+``` ping www.google.com ```
 
 - Atualizar o repositório do debian
 apt update
 - Instalando o editor de texto VIM
-apt install vim
+``` apt install vim ```
 
 - Testando a comunicação entre a máquina real e a virtual
 Na máquina real ping o IP da máquina virtual
 
 Para instalar o tomcat é necessario ter o Java instalado
-- apt install default-jdk -> instala o jdk
-- java -version -> versão do java
-- javac -version -> versão da máquina virtual java
+- ``` apt install default-jdk ``` -> instala o jdk
+- ``` java -version ``` -> versão do java
+- ``` javac -version ``` -> versão da máquina virtual java
 - quando instalamos o jdk no debian as variáveis de ambiente já vem configuradas
 
 Instalando o Servidor tomcat
-- apt install tomcat9 -> instala o tomcat v9
-- systemctl status tomcat9 -> verifica o status
+- ``` apt install tomcat9 ``` -> instala o tomcat v9
+- ``` systemctl status tomcat9 ``` -> verifica o status
 -  tecla "q" para sair do verificador de status
 - Testando o tomcat na máquina real
 No nagevador apontado para o IP do servodor e a porta 8080
 
 Entrando na raiz do servidor tomcat
-- cd /var
-- cd lib
-- cd tomcat9
-- cd webapps
-- cd ROOT
+- ``` cd /var ```
+- ``` cd lib ```
+- ``` cd tomcat9 ```
+- ``` cd webapps ```
+- ``` cd ROOT ```
 - É dentro do diretório ROOT que hospedamos os sites´
 
 Administrando o tomcat com interface gráfica
-- apt install tomcat9-admin tomcat9-examples tomcat9-docs
-- cd /etc/tomcat9
-- cp tomcat-users.xml tomcat-users.xml.bkp
-- vim tomcat-users.xml
-- tecla "Esc" :set number
+- ``` apt install tomcat9-admin tomcat9-examples tomcat9-docs ```
+- ``` cd /etc/tomcat9 ```
+- ``` cp tomcat-users.xml tomcat-users.xml.bkp ```
+- ``` vim tomcat-users.xml ```
+- ``` tecla "Esc" :set number ```
 - Na linha 21 e apertar a tecla "o" -> pula uma linha e ativo o modo inserção
-- <user username="admin" password="admin" roles="manager-gui, admin-gui" />
+- ``` <user username="admin" password="admin" roles="manager-gui, admin-gui" /> ```
 - Finalizando tecla "Esc" :wq tecla "enter"
-- systemctl restart tomcat9 -> reinicia o servidor tomcat9
+- ``` systemctl restart tomcat9 ``` -> reinicia o servidor tomcat9
 
-- 192.168.0.2:8080/docs
-- 192.168.0.2:8080/examples
-- 192.168.0.2:8080/manager/html -> UI gerencia o tomcat
+- ``` 192.168.0.2:8080/docs ```
+- ``` 192.168.0.2:8080/examples ```
+- ``` 192.168.0.2:8080/manager/html ``` -> UI gerencia o tomcat
 
 Comando java que exibe o IP do cliente 
-- request.getRemoteHost()
+- ``` request.getRemoteHost() ```
 
 Adicionando o repositório do MySQL
 - apt install gnupg -> gerenciamento das chaves
 - No site do MySQL na sessão MySQL Community (GPL) Downloads »
--  MySQL APT Repository
+- ``` MySQL APT Repository ```
 - Copiamos o link direto do download
 - Copie o link para um bloco de notas para facilitar
 - No terminal do servidor colocamos o seguinte comando: 
 wget <url do download direto aqui> 
-- dpkg -i <nome do arquivo> -> instala o pacote
+- ``` dpkg -i <nome do arquivo> ``` -> instala o pacote
 - instalar tudo padrão tecla "tab" seleciona e tecla "enter" próximo
 
 dpkg: aviso: ‘ldconfig’ não foi encontrado em PATH ou não é executável
@@ -290,33 +291,33 @@ Para resolver esse problema e bem simples.
 
 Edite o arquivo com o seu editor de texto favorito, no meu caso vou usar o vim
 
-- vim /etc/profile
+- ``` vim /etc/profile ```
 - Basta colocar /sbin após “games“, ficando como o exemplo a baixo
-- PATH="/usr/local/bin:/usr/bin:/bin:/usr/games/sbin"
+- ``` PATH="/usr/local/bin:/usr/bin:/bin:/usr/games/sbin" ```
 - Salve e Atualize o arquivo
 - source /etc/profile -> atualiza o arquivo
 - fonte da solução: https://relatosti.com.br/2021/08/resolvendo-erro-no-terminal-dpkg-aviso-ldconfig-nao-foi-encontrado-em-path/
 
 Atualizar o repositório e instalar o MySQL
-- apt update
-- apt install mysql-server
+- ``` apt update ```
+- ``` apt install mysql-server ```
 - Criar uma senha para o root do MySQL(Não tem nada havar com o root da máquina)
-- mysql -V -> verifica a versão do MySQL
-- systemctl status mysql -> verifica o status
+- ``` mysql -V ``` -> verifica a versão do MySQL
+- ``` systemctl status mysql ``` -> verifica o status
 - tecla "q" para sair
 
 Reforçando a segurança no banco de dados
 - mysql_secure_installation
 
 Criando usuário para acessar o mysql remotamente
-- mysql -u root -p
-- CTRL + L -> limpa o console
-- select user, host from mysql.user; -> lista os usuários do mysql
-- create user 'user'@'%' identified by 'password';
-- user -> nome do novo usuário sem espaço e tudo minúsculo
--  % -> significa que o usuário vai poder acessar o banco de qualquer lugar
-- password -> depende do nível de segurança escolhido nos passos anteriores
-- flush privileges; -> Atualiza as alterações sem precisar reiniciar o banco de dados
+- ``` mysql -u root -p ```
+- ``` CTRL + L ``` -> limpa o console
+- ``` select user, host from mysql.user; ``` -> lista os usuários do mysql
+- ``` create user 'user'@'%' identified by 'password'; ```
+- ``` user ``` -> nome do novo usuário sem espaço e tudo minúsculo
+- ``` % ``` -> significa que o usuário vai poder acessar o banco de qualquer lugar
+- ``` password ``` -> depende do nível de segurança escolhido nos passos anteriores
+- ``` flush privileges; ``` -> Atualiza as alterações sem precisar reiniciar o banco de dados
 
  Dando previlégios ao usuário para administrar qualquer banco de dados
  - grant all privileges on *.* to 'user'@'%';
@@ -331,3 +332,8 @@ Criando usuário para acessar o mysql remotamente
  
  Hosts Virtuais
  - O servidor web dinâmico permite hospedar vários projetos e associar cada projeto a um dominio. Ex:``` aplicativo1.com ``` ``` aplicativo2.com ```
+- São dominios ficticios. Em um projeto real apontaria os domonios registrados para o IP da VPS que tem o servidor tomcat instaldo.
+- sempre fazer uma cópia antes de mexer nos arquivos chaves do linux
+- ``` cp server.xml server.xml.bkp ```
+- Dentro de /etc/tomcat9 editar o arquivo server.xml 
+
