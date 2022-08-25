@@ -354,8 +354,8 @@ Fazendo o windows apontar para os dominios
 - Editar o arquivo ``` hosts ```
 - Ir até o final do documento
 -  Coloque o IP onde está o servidor e o dominio. 
--Ex: ``` 192.168.0.2 aplicativo1.com ```
-- tecla ``` Enter ``` 
+- Ex: ``` 192.168.0.2 aplicativo1.com ```
+- tecla ``` Enter ``` -> para pular uma linha
 - ``` 192.168.0.2 aplicativo2.com ```
 
 Fazendo o servidor servir páginas diferentes para cada dominio
