@@ -198,7 +198,7 @@ Configurações avançadas -> definição do servidor DHCP
 - Na linha 13 definindo o endereço:
   ``` address <endereço IP disponível na rede> ``` SEM os sinais de < e >
 - Na linha 14 definindo a máscara:
-  ``` netmask <máscara da rede> ``` SEM os sinais de < e >
+  ``` netmask <máscara da rede> ex: 255.255.255.0 ``` SEM os sinais de < e >
 - Procurar por classes de máscaras para fazer o passo a cima.
 - Na linha 15 definindo a rede: 
  ``` network 192.168.0.0 ```
