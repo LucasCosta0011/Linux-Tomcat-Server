@@ -320,7 +320,7 @@ Criando usuário para acessar o mysql remotamente
 - ``` flush privileges; ``` -> Atualiza as alterações sem precisar reiniciar o banco de dados
 
  Dando previlégios ao usuário para administrar qualquer banco de dados
- - grant all privileges on *.* to 'user'@'%';
+ - ``` grant all privileges on *.* to 'user'@'%'; ```
  - O primeiro * significa todos os bancos de dados
  - o segundo * significa todas as tabelas
  - CTRL + D -> sai do console do mysql
