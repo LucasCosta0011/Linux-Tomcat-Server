@@ -132,6 +132,9 @@ O que é linux?
 - A GPL garante a propriedade intelectual ao seu criador. Você não pode, por exemplo, se apoderar do linux "falar que você que criou" ou "falar que ele é seu".
 
 Tux este é o mascote oficial do linux
+
+<img style="width='100px'; height='100px'" src="https://raw.githubusercontent.com/LucasCosta0011/Linux-Tomcat-Server/main/tux.png" rel="mascote do linux, tux">
+
 - Criado em 1996 por Larry Ewing com o uso da ferramenta GIMP(também é uma ferramenta livre).
 - Ideia de pinguim veio do próprio Linus Torvalds.
 
